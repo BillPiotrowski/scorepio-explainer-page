@@ -1,0 +1,289 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"> 
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+
+  <meta name="theme-color" content="#fafafa">
+
+
+</head>
+
+<body>
+
+  <!-- Add your site or application content here -->
+
+
+  <style>
+
+    body {
+      position: relative;
+      font-family: 'IM Fell English', serif;
+      background: #333;
+      color: #ececec;
+    }
+    #mma {
+      height: 100vh;
+      width: 100vw;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: url(images/tabletop.jpg) no-repeat right top;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+    #mma.unlock {
+      position: absolute;
+      top: 140vh;
+    }
+    #mma header {
+      width: 54%;
+      margin: 0 2% 0 34%;
+      padding: 15% 0 0;
+    }
+    #mma h1 {
+      font-size: 2.8rem;
+      font-variant-caps: small-caps;
+      color: #ffffff;
+    }
+    #mma h1 span {
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+    #mma h1 .sub {
+      font-size: 1.8rem;
+      color: #ececec;
+      font-variant-caps: normal;
+    }
+    #secondary {
+      position: absolute;
+      top: 90vh;
+      left: 0;
+      height: 100vh;
+      /* color: #333; */
+      width: 100vw;
+    }
+    #secondary .content {
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      padding: 2% 4%;
+      display: flex;
+      justify-content: space-between;
+    }
+    #secondary .lock {
+      position: fixed;
+      top: 0;
+      width: 100vw;
+    }
+    #secondary .after {
+      margin-top: 50vh;
+    }
+    #secondary .iPhoneImage {
+      width: 28%;
+      height: 100%;
+      max-width: 19rem;
+    }
+    #secondary .iPhoneImage img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+    #secondary .iPhoneImage .animatedImage {
+      width: 100%;
+      height: 100%;
+      background: url(images/iphone-sprite.png) top left no-repeat;
+      background-size: 1700% auto;
+      background-position: 0 0;
+    }
+    #secondary .copy {
+      margin-top: 15vh;
+      width: 67%;
+    }
+    #secondary .copy p {
+      margin-top: 12rem;
+      font-size: 1.2rem;
+      max-width: 30rem;
+      line-height: 1.4;
+    }
+    p {
+      line-height: 1.4;
+    }
+    #moreContent {
+      position: relative;
+      height: 100vh;
+      top: 240vh;
+      width: 100vw;
+      left: 0;
+      background: #bbb;
+      color: #333;
+    }
+    #moreContent ul {
+      display: flex;
+      gap: 5%;
+      padding: 2rem 0;
+    }
+    #moreContent ul > li {
+      width: 30%;
+    }
+    #moreContent h2 {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+    }
+    #moreContent p {
+      margin-bottom: 1rem;
+    }
+    #moreContent video {
+
+    }
+
+    .innerWrap {
+      margin: 0 auto;
+      width: 100%;
+      max-width: 61rem;
+    }
+
+    video,
+    img
+    {
+      max-width: 100%;
+    }
+  </style>
+
+
+  <div id="mma">
+    <header>
+      <h1>
+        <span>A Dynamic Music App</span>
+        <span class="sub">That Adjusts to Your Tabletop RPG.</span>
+      </h1>
+    </header>
+  </div>
+  <div id="secondary">
+    <div class="content">
+      <div class="iPhoneImage">
+        <div class="animatedImage"></div>
+      </div>
+      <div class="copy">
+        <p>ScorePio is an iOS app that uses the built-in microphone to analyze gameplay in real time. It then changes the orchestration based on the the game dynamics – the more excited the players are, the louder and fuller the orchestration. It also features speech-triggered sound effects and a trained AI to recognize when players are in combat.</p>
+      </div>
+    </div>
+  </div>
+  <div id="moreContent">
+    <div class="innerWrap">
+      <ul>
+        <li>
+          <h2>Dynamic Orchestrations</h2>
+          <p>The music will grow and shrink in real time along with the ebb & flow of your gameplay. As your players get more excited, the music will reach a crescendo. Likewise, during the quietest moments of gameplay, the composition will be only an instrument or two.</p>
+          <p>One of the biggest challenges of using music in your TTRPG is managing levels. A bombastic track during a quiet moment quickly breaks immersion.</p>
+        </li>
+        <li>
+          <h2>Speech-Triggered SFX</h2>
+          <p>The Incantations feature allows you to create custom trigger words that, when spoken, play a speficied sound effect.</p>
+          <video src="video/yasha-storm.mp4" controls />
+        </li>
+        <li>
+          <h2>Combat Detection AI</h2>
+          <p></p>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+
+
+  <script src="js/vendor/modernizr-3.11.2.min.js"></script>
+  <script src="js/plugins.js"></script>
+  <script src="js/main.js"></script>
+
+  <script>
+    const mmaContainer = document.getElementById('mma')
+    const secondaryContainer = document.getElementById('secondary')
+    const secondaryContent = secondaryContainer.getElementsByClassName('content')[0]
+    const moreContent = document.getElementById('moreContent')
+    const windowHeight = window.innerHeight
+    const iPhoneImage = secondaryContent.getElementsByClassName('animatedImage')[0]
+
+    /**
+     * Calculates the ratio of completion.
+     * */
+    function getPhoneRatio(scrollTop, min, max){
+      const temp = scrollTop - min
+      const localMax = max - min
+      if (temp <= 0) {
+        return 0
+      }
+      else if (temp > localMax) {
+        return 1
+      } else {
+        return temp / localMax
+      }
+    }
+
+    function getPhonePosLeft(scrollTop, min, max){
+      const ratio = getPhoneRatio(scrollTop, min, max )
+      if (ratio == 0){
+        return 0
+      } else {
+        const temp = Math.round(ratio * 16)
+        return temp * 6.25
+      }
+    }
+
+    window.onscroll = function(){
+      const scrollTop = document.documentElement['scrollTop']
+      if ( scrollTop > moreContent.offsetTop - windowHeight ) {
+        secondaryContent.classList.add('after');
+        secondaryContent.classList.remove('lock');
+      } else if ( scrollTop > secondaryContainer.offsetTop ){
+        secondaryContent.classList.add('lock');
+        secondaryContent.classList.remove('after');
+      } else { 
+        secondaryContent.classList.remove('lock');
+        secondaryContent.classList.remove('after');
+      }
+
+      if ( scrollTop > moreContent.offsetTop - (windowHeight /* * 1.3*/) ) {
+
+        mmaContainer.classList.add('unlock');
+      } else {
+        mmaContainer.classList.remove('unlock');
+      }
+      const offset = getPhonePosLeft(scrollTop, secondaryContainer.offsetTop - 200, ( moreContent.offsetTop - windowHeight));
+      const bgPos = `${offset}% 0`
+      console.log(bgPos)
+      iPhoneImage.style.backgroundPosition = bgPos
+      // console.log(iPhoneImage)
+    };
+
+
+  </script>
+
+
+  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+  <script>
+    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+    ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async></script>
+</body>
+
+</html>
