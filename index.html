@@ -41,6 +41,22 @@
       background: #333;
       color: #ececec;
     }
+
+
+    .innerWrap {
+      margin: 0 4rem;
+    }
+    @media only screen and (min-width: 69rem) {
+      .innerWrap {
+        margin: 0 auto;
+        width: 100%;
+        max-width: 61rem;
+      }
+    }
+
+
+
+
     #mma {
       height: 100vh;
       width: 100vw;
@@ -48,17 +64,19 @@
       top: 0;
       left: 0;
       background: url(images/tabletop.jpg) no-repeat right top;
-      background-attachment: fixed;
+      /* background-attachment: fixed; */
       background-size: cover;
+      z-index: 2;
     }
     #mma.unlock {
       position: absolute;
-      top: 140vh;
+      top: 65vh;
     }
     #mma header {
-      width: 54%;
+      /* width: 54%;
       margin: 0 2% 0 34%;
-      padding: 15% 0 0;
+      padding: 15% 0 0; */
+      padding-top: 18%;
     }
     #mma h1 {
       font-size: 2.8rem;
@@ -76,19 +94,18 @@
     }
     #secondary {
       position: absolute;
-      top: 90vh;
+      top: 65vh;
       left: 0;
       height: 100vh;
       /* color: #333; */
       width: 100vw;
+      z-index: 5;
+      /* opacity: 0.4; */
     }
     #secondary .content {
       width: 100%;
       height: 100%;
-      box-sizing: border-box;
-      padding: 2% 4%;
-      display: flex;
-      justify-content: space-between;
+      /* padding: 2% 4%; */
     }
     #secondary .lock {
       position: fixed;
@@ -98,31 +115,65 @@
     #secondary .after {
       margin-top: 50vh;
     }
-    #secondary .iPhoneImage {
-      width: 28%;
+    #secondary .iPhoneImage, 
+    #mma .iPhoneImage
+    {
+      /* width: 28%; */
       height: 100%;
-      max-width: 19rem;
+      /* max-width: 19rem; */
+      /* display: flex;
+      flex-direction: column; */
+      /* justify-content: space-around; */
     }
-    #secondary .iPhoneImage img {
-      max-width: 100%;
-      max-height: 100%;
-    }
+
+
+
+
     #secondary .iPhoneImage .animatedImage {
       width: 100%;
-      height: 100%;
-      background: url(images/iphone-sprite.png) top left no-repeat;
+      background: url(images/iphone-sprite.png) left center no-repeat;
       background-size: 1700% auto;
-      background-position: 0 0;
+      background-position: 0 center;
+      padding-top: 200.232018561484919%; /* aspect ratio 431:863 = 863/431 */
+      max-width: 49.942062572421789vh; /* aspect ratio 431:863 = 431/863 */
+      max-width: 47vh;
+      display: none;
+    }
+    @media only screen and (min-width: 42rem) {
+      #mma .innerWrap, 
+      #secondary .innerWrap
+      {
+        /* background: pink; */
+        display: flex;
+        height: 100%;
+        gap: 3rem;
+      }
+      #mma .iPhoneImage, 
+      #secondary .iPhoneImage
+      {
+        /* background: beige; */
+        max-width: none;
+        width: 17rem;
+      }
+      #secondary .iPhoneImage .animatedImage {
+        height: 100%;
+        display: block;
+        padding-top: 0;
+      }
+      #secondary .iPhoneImage .animatedImage,
+      #mma .ph
+      {
+        width: 17rem;
+      }
     }
     #secondary .copy {
       margin-top: 15vh;
-      width: 67%;
     }
     #secondary .copy p {
       margin-top: 12rem;
       font-size: 1.2rem;
-      max-width: 30rem;
       line-height: 1.4;
+      max-width: 32rem;
     }
     p {
       line-height: 1.4;
@@ -130,7 +181,7 @@
     #moreContent {
       position: relative;
       height: 100vh;
-      top: 240vh;
+      top: 165vh;
       width: 100vw;
       left: 0;
       background: #bbb;
@@ -155,35 +206,45 @@
 
     }
 
-    .innerWrap {
-      margin: 0 auto;
-      width: 100%;
-      max-width: 61rem;
-    }
 
     video,
     img
     {
       max-width: 100%;
     }
+
+    #secondary .content {
+      /* background: aqua; */
+    }
+    #mma .innerWrap {
+      /* background: lime; */
+    }
+
   </style>
 
 
   <div id="mma">
-    <header>
-      <h1>
-        <span>A Dynamic Music App</span>
-        <span class="sub">That Adjusts to Your Tabletop RPG.</span>
-      </h1>
-    </header>
+
+    <div class="innerWrap">
+      <div class="iPhoneImage"><div class="ph"></div></div>
+      <header>
+        <h1>
+          <span>A Dynamic Music App</span>
+          <span class="sub">That Adjusts to Your Tabletop RPG.</span>
+        </h1>
+      </header>
+    </div>
   </div>
   <div id="secondary">
+
     <div class="content">
-      <div class="iPhoneImage">
-        <div class="animatedImage"></div>
-      </div>
-      <div class="copy">
-        <p>ScorePio is an iOS app that uses the built-in microphone to analyze gameplay in real time. It then changes the orchestration based on the the game dynamics – the more excited the players are, the louder and fuller the orchestration. It also features speech-triggered sound effects and a trained AI to recognize when players are in combat.</p>
+    <div class="innerWrap">
+        <div class="iPhoneImage">
+          <div class="animatedImage"></div>
+        </div>
+        <div class="copy">
+          <p>ScorePio is an iOS app that uses the built-in microphone to analyze gameplay in real time. It then changes the orchestration based on the the game dynamics – the more excited the players are, the louder and fuller the orchestration. It also features speech-triggered sound effects and a trained AI to recognize when players are in combat.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -250,25 +311,25 @@
 
     window.onscroll = function(){
       const scrollTop = document.documentElement['scrollTop']
-      if ( scrollTop > moreContent.offsetTop - windowHeight ) {
-        secondaryContent.classList.add('after');
-        secondaryContent.classList.remove('lock');
-      } else if ( scrollTop > secondaryContainer.offsetTop ){
-        secondaryContent.classList.add('lock');
-        secondaryContent.classList.remove('after');
-      } else { 
-        secondaryContent.classList.remove('lock');
-        secondaryContent.classList.remove('after');
-      }
+      // if ( scrollTop > moreContent.offsetTop - windowHeight ) {
+      //   secondaryContent.classList.add('after');
+      //   secondaryContent.classList.remove('lock');
+      // } else if ( scrollTop > secondaryContainer.offsetTop ){
+      //   secondaryContent.classList.add('lock');
+      //   secondaryContent.classList.remove('after');
+      // } else { 
+      //   secondaryContent.classList.remove('lock');
+      //   secondaryContent.classList.remove('after');
+      // }
 
-      if ( scrollTop > moreContent.offsetTop - (windowHeight /* * 1.3*/) ) {
+      if ( scrollTop > secondaryContainer.offsetTop ) {
 
         mmaContainer.classList.add('unlock');
       } else {
         mmaContainer.classList.remove('unlock');
       }
-      const offset = getPhonePosLeft(scrollTop, secondaryContainer.offsetTop - 200, ( moreContent.offsetTop - windowHeight));
-      const bgPos = `${offset}% 0`
+      const offset = getPhonePosLeft(scrollTop, 0, ( moreContent.offsetTop - windowHeight));
+      const bgPos = `${offset}% center`
       console.log(bgPos)
       iPhoneImage.style.backgroundPosition = bgPos
       // console.log(iPhoneImage)
