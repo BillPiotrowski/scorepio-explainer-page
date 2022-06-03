@@ -41,55 +41,92 @@
 
 
 
-
-
-
-    #moreContent {
-      position: relative;
-      height: 100vh;
-      top: 165vh;
-      width: 100vw;
-      left: 0;
-      background: #bbb;
-      color: #333;
+    body {
     }
-    #moreContent ul {
-      display: flex;
-      gap: 5%;
+
+
+    #dynamicOrchestrations {
+      left: 0;
+      padding-top: 165vh;
+      background: #dee3e4;
+      color: #39474a;
+    }
+    #dynamicOrchestrations .innerWrap {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
+    #dynamicOrchestrations .mixer {
+      background: url(images/symbol-mixer.png) no-repeat left center;
+      height: 100%;
+      background-size: 5rem 5rem;
+    }
+
+    #triggeredFX {
+      padding: 3rem 0;
+      background: #eaedef;
+      color: #39474a;
+    }
+    #triggeredFX .mic {
+      background: url(images/mic-symbol.png) no-repeat left center;
+      height: 100%;
+      background-size: 5rem 7.5rem;
+    }
+
+    #combatDetection {
+      background: #dee3e4;
+      color: #39474a;
+      padding: 3rem 0;
+    }
+    #combatDetection .combat {
+      background: url(images/sword-icon.png) no-repeat left center;
+      height: 100%;
+      background-size: 5rem 8.015873015873016rem;
+    }
+
+    body {
+      /* background: #c6d0d6; */
+    }
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 0.2rem;
+      font-variant-caps: small-caps;
+      /* color: #d5d5d5; */
+      /* color: #22292b; */
+    }
+    h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.6rem;
+      font-variant-caps: small-caps;
+    }
+    p {
+      margin-bottom: 1rem;
+    }
+
+    .minorSection {
       padding: 2rem 0;
     }
-    #moreContent ul > li {
-      width: 30%;
-    }
-    #moreContent h2 {
-      font-size: 1.6rem;
-      margin-bottom: 1rem;
-    }
-    #moreContent p {
-      margin-bottom: 1rem;
-    }
-    #moreContent video {
-
-    }
-
-
 
 
   </style>
+
+  <!-- TO DO:
+    Add fixed position to header through js, so page still works without js
+    Way to remove placeholder content?
+  -->
 
 
   <div id="mma">
 
     <div class="innerWrap">
       <div class="iPhoneImage"><div class="ph"></div></div>
-      <header>
-        <h1>
-          <span>A Dynamic Music App</span>
-          <span class="sub">That Adjusts to Your Tabletop RPG.</span>
-        </h1>
-      </header>
+        <header>
+          <h1>
+            <span>A Dynamic Music App</span>
+            <span class="sub">That Adjusts to Your Tabletop RPG.</span>
+          </h1>
+        </header>
+      </div>
     </div>
-  </div>
   <div id="secondaryMMA">
 
     <div class="content">
@@ -98,29 +135,101 @@
           <div class="animatedImage"></div>
         </div>
         <div class="copy">
-          <p>ScorePio is an iOS app that uses the built-in microphone to analyze gameplay in real time. It then changes the orchestration based on the the game dynamics – the more excited the players are, the louder and fuller the orchestration. It also features speech-triggered sound effects and a trained AI to recognize when players are in combat.</p>
+          <p>ScorePio helps to automatically integrate music into TTRPGs by using the iPhone's microphone to adjust levels and instrumentation – the more energetic the playes are, the larger the orchestration. When enabled, the app can also use speech detection to trigger sound effects and recognize in-game combat.</p>
         </div>
       </div>
     </div>
   </div>
-  <div id="moreContent">
+
+
+  <div id="dynamicOrchestrations">
     <div class="innerWrap">
-      <ul>
-        <li>
-          <h2>Dynamic Orchestrations</h2>
-          <p>The music will grow and shrink in real time along with the ebb & flow of your gameplay. As your players get more excited, the music will reach a crescendo. Likewise, during the quietest moments of gameplay, the composition will be only an instrument or two.</p>
-          <p>One of the biggest challenges of using music in your TTRPG is managing levels. A bombastic track during a quiet moment quickly breaks immersion.</p>
-        </li>
-        <li>
-          <h2>Speech-Triggered SFX</h2>
-          <p>The Incantations feature allows you to create custom trigger words that, when spoken, play a speficied sound effect.</p>
-          <video src="video/yasha-storm.mp4" controls />
-        </li>
-        <li>
-          <h2>Combat Detection AI</h2>
-          <p></p>
-        </li>
-      </ul>
+      <div class="symbol">
+        <div class="mixer"></div>
+      </div>
+      <div class="content">
+        <h2>Dynamic Volume</h2>
+        <h3>Microphone detects player energy and automatically adjusts levels.</h3>
+        <p>The music will grow and shrink in real time along with the ebb & flow of your gameplay. As your players get more excited, the music will crescendo. Likewise, during the quietest moments of gameplay, the composition will shrink to only an instrument or two.</p>
+        <p>One of the biggest challenges of using music in your TTRPG is managing levels. A bombastic track during a quiet moment quickly breaks immersion. ScorePio attempts to solve this by arranging the music around your game.</p>
+        <video src="video/dynamic-gnolls.mp4" poster="images/dynamic-gnolls-poster.jpg" controls />
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <div id="triggeredFX">
+    <div class="innerWrap">
+      <div class="symbol">
+        <div class="mic"></div>
+      </div>
+      <div class="content">
+        <h2>Speech-Triggered SFX</h2>
+        <h3>Choose a word to trigger a sound effect.</h3>
+        <p>The Incantations feature allows you to create custom trigger words that, when detected by the microphone, play a specific sound effect. The video below demonstrates how to play a thunder sound effect whenever the word "thunder" is spoken.</p>
+        <video src="video/yasha-storm.mp4" poster="images/yasha-storm-poster.jpg" controls />
+      </div>
+    </div>
+  </div>
+
+
+  <div id="combatDetection">
+    <div class="innerWrap">
+      <div class="symbol">
+        <div class="combat"></div>
+      </div>
+      <div class="content">
+        <h2>Intelligent Combat Detection</h2>
+        <p>When enabled, ScorePio can recognize when the game has entered combat. This is done using a Machine Learning engine that has been trained to identify words and phrases that are associated with combat in D&D.</p>
+        <p>Combat detection is a lagging metric that may take a few minutes to reach a confidence threshold, but when triggered, playlists can be changed. The AI has been specifically trained to recognize combat in D&D 5th addition with more games and scenerios planned for the future.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="minorSection" id="appState">
+    <div class="innerWrap">
+      <h2>Current State</h2>
+      <p>This app has been a passion project since 2019 with the goal of providing Game Masters a tool to more easily and effectively integrate music in to their games. Hundreds (likely thousands) of hours have been spent on this project and the next steps will require much more work and the help of more people. Before continuing, I want to share the idea with a small group of GMs for feedback and thoughts.</p>
+      <p>Thank you for taking a look at this project. I sincerely appreciate any thoughts and opinions. The beauty of technology is that almost anything is possible. My main goal is to provide all games with the musical score they deserve.</p>
+    </div>
+  </div>
+
+  <div class="minorSection" id="musicDirection">
+    <div class="innerWrap">
+      <h2>Music Direction</h2>
+      <p>The vision for the music is to create both scenerio music (combat, travel, tavern, etc.) and cultural music. I believe there is a lot of unexplored territory in developing the sound of each culture in D&D.</p>
+      <p>What kind of instruments would a Dragonborn play with claws?</p>
+      <p>The oldest known instrument on Earth is a Neanderthal flute made of bone. This sounds eerily familiar to gnolls making trophies from their prey.</p>
+    </div>
+  </div>
+
+  <div class="minorSection" id="biography">
+    <div class="innerWrap">
+      <h2>Biography</h2>
+      <p>Hello. Thanks for making it this far. I first started composing music at 15 as a member of the orchestral band, <a href="https://noxarcana.com" target="_blank">Nox Arcana</a>. For the last six years, I have been primarily working as an engineer and producer with Ryan Ross (Panic! at the Disco).</p>
+      <p>Unfortunately, I have never played Dungeons & Dragons, but have loved fantasy games since I was a kid. Much of my childhood was dedicated to a Half-Elf ranger on the Brell Serilis server of Everquest or playing Magic: the Gathering. I also made myself a full chainmail shirt and coif to wear to the Great Lakes Ren Fair when I was in high school.</p>
+      <p>After graduating with a degree in Visual Communication & Design from Kent State University, I worked for a few years building the front-end of Progressive.com. This app has been a passion project combining my passion for composing, code and fantasy games.</p>
+      <p><a href="https://williampiotrowski.com/repertorium" target="_blank">Official Music Site</a></p>
+    </div>
+  </div>
+
+  <div class="minorSection" id="ethics">
+    <div class="innerWrap">
+      <h2>Privacy & Ethics</h2>
+      <p>Any use of the built-in microphone requires sensitivity and the ScorePio app does not and will not track its user's speech or game data. The dynamic music feature requires the user's permission to use the microphone, but only stores the audio for a fraction of a second. It does not detect speech. The Incantations (speech-triggered sound effects) and combat detection features both require speech detection to be enabled. This service sends audio data to Apple's server. Apple then returns the detected text, which is stored locally on the phone for a short amount of time (less than a few minutes), analyzed and then deleted. The text is never sent to a ScorePio or affiliated server.</p>
+      <p>The music and app is the product and ScorePio will never sell a user's data.</p>
+    </div>
+  </div>
+
+
+  <div class="minorSection" id="disclaimer">
+    <div class="innerWrap">
+      <h2>Copyright Content</h2>
+      <p>The ScorePio app has been developed using clips from Critical Role and LA by Night – I have listened to some scenes for countless hours on loop while dialing in the code. Some of these clips have been used on this page to demonstrate the app's features. This app is not endorsed by or affiliated with any of the creators and this is being used for private demonstration only. This content is not for public release – please do not share.</p>
     </div>
   </div>
 
