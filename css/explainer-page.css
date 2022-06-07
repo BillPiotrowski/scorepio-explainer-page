@@ -60,7 +60,7 @@ video {
     position: fixed;
     top: 0;
     left: 0;
-    background: url(../images/tabletop.jpg) no-repeat right top;
+    background: #352e2a url(../images/tabletop.jpg) no-repeat right top;
     background-size: cover;
     z-index: 2;
 }
