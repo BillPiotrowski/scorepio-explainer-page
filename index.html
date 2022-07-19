@@ -72,7 +72,7 @@
       padding: 3rem 0;
     }
     #combatDetection .combat {
-      background: url(images/sword-icon.png) no-repeat left center;
+      background: url(images/sword-icon.png) no-repeat left top;
       height: 100%;
       background-size: 5rem 8.015873015873016rem;
     }
@@ -176,12 +176,194 @@
       </div>
       <div class="content">
         <h2>Intelligent Combat Detection</h2>
-        <p>When enabled, ScorePio can recognize when the game has entered combat. This is done using a Machine Learning engine that has been trained to identify words and phrases that are associated with combat in D&D.</p>
-        <p>Combat detection is a lagging metric that may take a few minutes to reach a confidence threshold, but when triggered, playlists can be changed. The AI has been specifically trained to recognize combat in D&D 5th Edition with more games and scenarios planned for the future.</p>
+        <p>If enabled, ScorePio can recognize when the game has entered combat. This is done using a Machine Learning engine that has been trained to identify words and phrases that are associated with combat in D&D.</p>
+        
+        <div class="demo">
+
+          <h3>Try It Yourself!</h3>
+
+          <p>This demonstration uses the AI model to analyze text. Write a sentence that you or your players may use during a game and it will determine if it's from combat. You can try the samples below or write your own:</p>
+  
+          <ul class="samplePhrases">
+            <li>You take 7 points of necrotic damage.</li>
+            <li>We should go to the inn for the night.</li>
+            <li>How much does the leather pouch cost?</li>
+            <li>Roll constitution save against poison.</li>
+          </ul>
+          
+  
+          <form id="combatDetectionForm">
+            <div id="combatDetectionTextInputContainer">
+              <label id="combatDetectionTextLabel" for="combatDetectionTextInput">Type Content</label>
+              <input id="combatDetectionTextInput" name="combatDetectionTextInput" type="text" />
+            </div>
+            <input id="combatDetectionSubmitButton" type="submit" value="Analyze" />
+            <p id="combatDetectionResponse">&nbsp;</p>
+          </form>
+        </div>
+
+
+        <p>The model may not be accurate with every isolated phrase, but over time, the ScorePio app can usually get a confident sense if the players are in combat, which will allow playlists and sounds to change. The AI will require more data, but has been specifically trained to recognize combat in D&D 5th Edition with more games and scenarios planned for the future.</p>
       </div>
     </div>
   </div>
 
+  <style>
+    #combatDetection .demo {
+      max-width: 26rem;
+      margin: 1rem auto;
+    }
+    #combatDetection h3 {
+      color: #1da4c1;
+      font-size: 1.5rem;
+      margin-top: 2rem;
+    }
+    #combatDetection .samplePhrases li {
+      font-style: italic;
+      margin-bottom: 0.75rem;
+      text-align: center;
+      font-size: 1.2rem;
+    }
+    #combatDetectionTextInputContainer {
+      background: #fff;
+      border: 1px solid #3a484b;
+      position: relative;
+      margin-bottom: 1rem;
+    }
+    #combatDetectionTextInputContainer label,
+    #combatDetectionTextInputContainer input
+    {
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      padding: 1rem;
+    }
+    #combatDetectionTextInputContainer label {
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: #777;
+      transition: opacity 0.3s, visibility 0.3s;
+    }
+    #combatDetectionTextInputContainer input {
+      position: relative;
+      z-index: 10;
+      background: none;
+      border: none;
+      margin: 0;
+      font-family: 'IM Fell English', serif;
+      font-size: 1rem;
+    }
+    #combatDetectionSubmitButton {
+      font-family: 'IM Fell English', serif;
+      font-size: 1.25rem;
+      padding: 0.5rem 1.5rem;
+      background-color: #1da4c1;
+      color: #dee3e4;
+      border: none;
+      margin-bottom: 1rem;
+    }
+    #combatDetectionSubmitButton:disabled {
+      background-color: #8fa6ab;
+    }
+    #combatDetectionResponse {
+      color: #1da4c1;
+    }
+  </style>
+
+
+  <script>
+
+    const combatDetectionForm = document.getElementById('combatDetectionForm')
+    const combatDetectionTextInput = document.getElementById('combatDetectionTextInput')
+    const combatDetectionTextLabel = document.getElementById('combatDetectionTextLabel')
+    const combatDetectionSubmitButton = document.getElementById('combatDetectionSubmitButton')
+    const combatDetectionResponse = document.getElementById('combatDetectionResponse')
+
+    let combatDetectionString = ""
+
+
+    async function querySentimentAnalysis(instanceLine) {
+      const data = {
+        // instances: "Roll d 20 for constitution save against poison."
+        instances: instanceLine
+      }
+      const settings = {
+          method: 'GET',
+          headers: {
+              // "instances": "hello this is a test",
+              // "Access-Control-Allow-Origin": "*",
+              // "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
+              // Accept: 'application/json',
+              'Content-Type': 'application/json',
+          },
+          // body: JSON.stringify(data),
+          // body: JSON.stringify(data) // body data type must 
+      };
+      try {
+          const fetchResponse = await fetch(`/api/?instances=${instanceLine}`, settings);
+          // console.log(fetchResponse)
+          const data = await fetchResponse.json();
+          const prediction = data.prediction
+          return prediction;
+      } catch (e) {
+          return e;
+      }    
+
+    }
+
+    const getConfidenceRatio = function (prediction) {
+      const abs = Math.abs(prediction)
+      const ratio = abs / 3
+      return ratio > 1 ? 1 : ratio
+    }
+    const getConfidencePercentage = function(prediction) {
+      const confidenceRatio = getConfidenceRatio(prediction)
+      return Math.round(confidenceRatio * 100)
+    }
+    const getStringFromPrediction = function(prediction) {
+      const detectionPhrase = prediction > 0 ? `Combat` : `Not combat`
+      const confidencePercentage = getConfidencePercentage(prediction)
+      return `${detectionPhrase} with a confidence of ${confidencePercentage}%.`
+      
+    }
+    const combatDetectionFormHandler = function(e){
+      event.preventDefault()
+      combatDetectionSubmitButton.disabled = true
+      querySentimentAnalysis(combatDetectionTextInput.value)
+      .then((response) => {
+        console.log(getStringFromPrediction(response))
+        combatDetectionResponse.innerHTML = getStringFromPrediction(response)
+        combatDetectionSubmitButton.disabled = false
+      });
+      console.log(combatDetectionTextInput.value)
+    }
+
+
+    const inputHandler = function(e) {
+      console.log(combatDetectionTextInput.value)
+      combatDetectionString = combatDetectionTextInput.value
+      combatDetectionResponse.innerHTML = `&nbsp;`
+      handleLabelVisibility(combatDetectionString)
+    }
+
+    const handleLabelVisibility = function(combatDetectionString) {
+      const opacity = combatDetectionString == "" ? 1 : 0
+      combatDetectionTextLabel.style.opacity = opacity
+
+    }
+
+    combatDetectionTextInput.addEventListener('input', inputHandler);
+    combatDetectionTextInput.addEventListener('propertychange', inputHandler); // for IE8
+// Firefox/Edge18-/IE9+ don’t fire on <select><option>
+// source.addEventListener('change', inputHandler); 
+
+
+    combatDetectionForm.onsubmit = combatDetectionFormHandler
+    
+    
+
+  </script>
 
   <div class="minorSection" id="appState">
     <div class="innerWrap">
