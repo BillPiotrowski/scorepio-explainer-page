@@ -2,7 +2,8 @@
 
 $instances = htmlspecialchars($_GET["instances"]);
 
-$url = 'http://localhost:8501/v1/models/combat_detection_bert:predict';
+// $url = 'http://localhost:8501/v1/models/combat_detection_bert:predict';
+$url = 'http://66.175.235.59:8501/v1/models/combat_detection_bert:predict';
 
 $data = array("instances" => array($instances));
 
