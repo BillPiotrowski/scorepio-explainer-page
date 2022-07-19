@@ -301,7 +301,7 @@
           // body: JSON.stringify(data) // body data type must 
       };
       try {
-          const fetchResponse = await fetch(`/api/?instances=${instanceLine}`, settings);
+          const fetchResponse = await fetch(`api/?instances=${instanceLine}`, settings);
           // console.log(fetchResponse)
           const data = await fetchResponse.json();
           const prediction = data.prediction
